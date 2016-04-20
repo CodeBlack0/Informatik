@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Projekt-Aufgabe</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="robots" content="noindex,nofollow,noarchive" />
+</head>
+
+<body>
+
+<h1>Projekt-Aufgabe bis 14.12.</h1>
+
+<h2>Aufgabe</h2>
+
+<p>
+Die Dateien <a href="dbuser.sql">dbuser.sql</a> und <a href="partner.sql">partner.sql</a>  beinhalten die Datenbank-Queries um in den
+Tabellen <code>dbuser</code> und <code>partner</code> ca. 10.000 Test-Benutzer mit ihrem Partner-Profil anzulegen. Beide Dateien gehen
+ von leeren Tabellen aus.
+</p>
+
+<p>
+Einige Einträge im Partner-Profil haben den Un-Wert <code>NULL</code>. Das bedeutet, dass der Benutzer an dieser Stelle keine Einschränkung
+ bzgl. des Partners macht. Wenn also z.B. <code>psize_min</code> auf <code>NULL</code> gesetzt ist, verlangt der Benutzer keine Mindestgröße.
+</p>
+
+<p>
+Bewältige folgende Aufgaben:
+</p>
+
+<ol>
+	<li>Lies beide Dateien in deine Datenbank ein.</li>
+	<li>Entwickle eine oder mehrere Queries, mit denen für jeden Benutzer alle möglichen Partner angezeigt werden. Berücksichtige dabei
+	die <code>NULL</code>-Einträge richtig.</li>
+	<li>Erzeuge eine Tabelle <code>partnercand</code>, in der für jeden Benutzer alle möglichen Partner-Kandidaten gespeichert sind, also
+	alle anderen Benutzer, die
+	sein Partner-Profil erfüllen. Umgekehrt muss der Benutzer selbst <i>nicht</i> die Partner-Profile seiner Partner-Kandidaten
+	erfüllen. Die Zuordnung von Benutzer zu Partner-Kandidat ist also nicht symmetrisch.</li>
+	<li>Erzeuge eine Tabelle <code>pair</code> mit 2 Spalten, nämlich <code>p1</code> und <code>p2</code>. Beide Spalten enthalten die 
+	Benutzer-IDs einer möglichen Paarung. Das bedeutet, dass beide Partner gegenseitig das Partner-Profil des jeweils anderen erfüllen.
+	Jede Paarung darf nur einmal erscheinen, die kleinere Benutzer-ID muss in <code>p1</code> stehen, die größere in <code>p2</code>. Es müssen alle möglichen 
+	Paarungen aufgelistet werden.</li>
+	<li>Erzeuge eine Tabelle <code>single</code> mit einer einzigen Spalte, die die IDs der nicht vermittelbaren Benutzer enthält.</li>
+	<li>Dokumentiere deine Arbeit in HTML, indem du z.B. diese Datei oder die Zusammenfassung für die Klausur kopierst und als
+	Ausgangspunkt nimmst. Die HTML-Datei mit deiner Dokumentation muss <code>projekt1.html</code> heißen.</li>
+</ol>
+
+<p>
+Die Verarbeitung der Test-Daten sollte nur in der Datenbank erfolgen. Die Verwendung von externen Programmen sollte nur im Notfall
+geschehen und gilt als wenig elegant.
+</p>
+
+<p>
+Ihr dürft gerne zusammen arbeiten, aber wichtig ist, dass am Ende jeder ein eigenes Ergebnis vorlegt und alles verstanden hat.
+Trittbrettfahrer werden bei der abschließenden Einzelbefragung schnell entlarvt.
+</p>
+
+<h2>Abgabe</h2>
+
+<p>
+Die Abgabe erfolgt rein digital bis Sonntag, 14.12.2014, 22:00 Uhr. Bewertet wird, was ab diesem Zeitpunkt in Eurer Datenbank liegt bzw.
+in Eurem Web-Ordner. Die Einzelbefragung erfolgt dann in der Doppelstunde am Dienstag, 16.12.
+</p>
+
+<h2>Bewertung</h2>
+
+<p>
+Bewertet werden folgende Punkte:
+</p>
+<ul>
+	<li>das Erreichen der Ziele oder Teilziele</li>
+	<li>die Eleganz der Lösung</li>
+	<li>die Dokumentation - es geht um Inhalt und gute Lesbarkeit, nicht um kunstvolles HTML-Design.</li>
+	<li>die Einzelbefragung</li>
+</ul>
+
+<p>
+Die Einzelbefragung hat hauptsächlich den Zweck, entscheiden zu können, in wie weit jemand seine Arbeit auch wirklich verstanden hat.
+Wenn dabei bei Einzelnen der Anschein entstehen sollte, dass die Ergebnisse durch unverstandes Kopieren von Anderen zustande gekommen sind, 
+führt das zu gravierenden Abzügen bis im Extremfall zu 0 Punkten.
+</p>
+
+<h2>Bewältigung der Aufgaben</h2>
+
+<p>
+Meine vollständige Dokumentation ist in Notizen-info.hmtl nach zulesen
+</p>
+
+<ol>
+	<li>
+		<b>Lösung:</b><br> 
+		<ul>
+			<li>Benutzerdatenbank einlesen mit: <code>\i /home/public/Datebook/dbuser.sql</code></li>
+			<li>Partnerdatenbank einlesen mit: <code>\i /home/public/Datebook/partner.sql</code></li>
+		</ul>
+	</li>
+	<li>
+		<b>Lösung:</b><br> 
+		<pre><code>INSERT INTO partnercand (searcher, cand) 
+	SELECT searcher, id
+	FROM dbuser, partner WHERE
+	searcher != id AND
+	(sex = ANY(psex) 				OR psex 	IS NULL) AND
+	(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+	(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+	(psize_min &lt;= size 				OR psize_min 	IS NULL) AND
+	(size &lt;= psize_max 				OR psize_max 	IS NULL) AND
+	(hcolor = ANY(phcolor) 				OR phcolor 	IS NULL) AND
+	(ecolor = ANY(pecolor) 				OR pecolor 	IS NULL) AND
+	(body = ANY(pbody) 				OR pbody 	IS NULL);</code></pre>
+	</li>
+	<li>
+		<ol>
+			<li>
+				<b>Einfache Lösung</b><br>
+				<pre><code>CREATE TABLE partnercand (
+	suchender integer, 
+	cand integer
+);
+INSERT INTO partnercand (suchender, cand) 
+	SELECT searcher, id
+	FROM dbuser, partner WHERE
+	searcher != id AND
+	(sex = ANY(psex) 				OR psex 	IS NULL) AND
+	(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+	(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+	(psize_min &lt;= size 				OR psize_min 	IS NULL) AND
+	(size &lt;= psize_max 				OR psize_max 	IS NULL) AND
+	(hcolor = ANY(phcolor) 				OR phcolor 	IS NULL) AND
+	(ecolor = ANY(pecolor) 				OR pecolor 	IS NULL) AND
+	(body = ANY(pbody) 				OR pbody 	IS NULL);</code></pre>
+			</li>
+			<li>
+				<b>Komplexe Lösung (Kandidaten in Array speichern)</b>
+				<ul>
+					<li>
+						<b>[WIP]</b> für mehr Infos in Notizen-info.html nachlesen
+					</li>
+				</ul>
+			</li>
+		</ol>
+	</li>
+	<li>
+		<b>Lösung:</b><br>
+		<pre><code>CREATE TABLE pair (
+	p1 integer,
+	p2 integer
+);
+INSERT INTO pair (p1, p2) 
+	SELECT t1.suchender, t1.cand 
+	FROM partnercand AS t1, partnercand AS t2 WHERE 
+	t1.suchender = t2.cand AND
+	t2.suchender = t1.cand AND
+	t1.suchender &lt; t2.suchender;</code></pre><br>
+	</li>
+	<li>
+		<b>Lösung:</b><br>
+		<pre><code>CREATE TABLE single (s integer);
+INSERT INTO single (s) 
+	SELECT id
+	FROM dbuser EXCEPT 
+	SELECT p1
+	FROM pair EXCEPT
+	SELECT p2
+	FROM pair;</code></pre><br>
+	</li>
+</ol>
+
+</body>
+</html>

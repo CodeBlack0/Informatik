@@ -1,0 +1,220 @@
+Helpfull Links:
+http://www.postgresql.org/docs/9.1/static/arrays.html
+http://www.postgresql.org/docs/9.1/static/functions-array.html
+http://www.postgresql.org/docs/9.1/static/sql.html
+
+Aufgabe 2:
+	1.) Ursprüngliche Query analysieren
+		SELECT searcher,id,name,sex,age(bday),size,hcolor,ecolor,body,city 
+		FROM partner, dbuser WHERE 
+		searcher!=id AND 
+		sex = ANY(psex) AND 
+		hcolor = ANY(phcolor) AND 
+		page_min<=EXTRACT( year FROM age(bday)) AND 
+		EXTRACT( year FROM age(bday))<page_max;
+			--> ZU VIEL!
+	 
+	 
+	2.) Suchfeld kürzen
+		SELECT searcher,id,name,sex,age(bday),size,hcolor,ecolor,body,city 
+		FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		sex = ANY(psex) AND
+		hcolor = ANY(phcolor) AND 
+		page_min<=EXTRACT( year FROM age(bday)) AND 
+		EXTRACT( year FROM age(bday))<page_max;
+			-->Suchfeld auf 500 IDs kürzen
+
+	3.)NULL-Werte filtern
+	Idee: foo IS NULL OR foo ~ bar AND ...
+
+		SELECT searcher,id,name,sex,age(bday),size,hcolor,ecolor,body,city 
+		FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		sex      IS NULL OR sex = ANY(psex) AND 
+		hcolor   IS NULL OR hcolor = ANY(phcolor) AND 
+		page_min IS NULL OR page_min<=EXTRACT( year FROM age(bday)) AND 
+		page_max IS NULL OR EXTRACT( year FROM age(bday))<page_ma);
+			--> Herr Musil: ! AND stärker als OR 
+			--> (foo IS NULL OR foo ~ bar) AND ...
+
+	4.)Korrektur
+		SELECT searcher,id,name,sex,age(bday),size,hcolor,ecolor,body,city FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		(sex      IS NULL OR sex = ANY(psex)) AND 
+		(hcolor   IS NULL OR hcolor = ANY(phcolor)) AND 
+		(page_min IS NULL OR page_min<=EXTRACT( year FROM age(bday))) AND 
+		(page_max IS NULL OR EXTRACT( year FROM age(bday))<page_max) AND
+		(psize_min IS NULL OR psize_min <= size) AND
+		(psize_max IS NULL OR psize_max >= size) AND
+		(pbody IS NULL OR body = ANY(pbody));
+			-->FERITG
+			
+Aufgabe 3:
+1.) 1.) Tabelle partnercand einrichten
+		CREATE TABLE partnercand (
+			suchender integer,
+			cand integer
+		);
+
+	2.)Tabelle füllen
+		INSERT INTO partnercand (suchender, cand)
+		SELECT searcher,id
+		FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		(sex      IS NULL OR sex = ANY(psex)) AND 
+		(hcolor   IS NULL OR hcolor = ANY(phcolor)) AND 
+		(page_min IS NULL OR page_min <= EXTRACT( year FROM age(bday))) AND 
+		(page_max IS NULL OR EXTRACT( year FROM age(bday)) < page_max) AND
+		(psize_min IS NULL OR psize_min <= size) AND
+		(psize_max IS NULL OR psize_max >= size) AND
+		(pbody IS NULL OR body = ANY(pbody));
+			-->FERTIG
+		
+2.)	1.) Tabelle partnercand einrichten
+[WIP]	CREATE TABLE partnercand (
+			suchender integer REFERENCE dbuser(id),
+			cand integer[]
+		);
+	
+	2.)Tabelle füllen
+		INSERT INTO partnercand (suchender, cand) 
+		SELECT searcher,id
+		FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		(sex      IS NULL OR sex = ANY(psex)) AND 
+		(hcolor   IS NULL OR hcolor = ANY(phcolor)) AND 
+		(page_min IS NULL OR page_min<=EXTRACT( year FROM age(bday))) AND 
+		(page_max IS NULL OR EXTRACT( year FROM age(bday))<page_max) AND
+		(psize_min IS NULL OR psize_min <= size) AND
+		(psize_max IS NULL OR psize_max >= size) AND
+		(pbody IS NULL OR body = ANY(pbody));
+		
+		-->Dopplung der ID in partnercand
+		
+	3.)Korrektur
+	Idee: eine ID | passende PartnerIDs in Array
+		INSERT INTO partnercand (suchender) SELECT searcher FROM partner WHERE searcher<=500;
+		UPDATE partnercand SET cand || id
+		FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		(sex      IS NULL OR sex = ANY(psex)) AND 
+		(hcolor   IS NULL OR hcolor = ANY(phcolor)) AND 
+		(page_min IS NULL OR page_min<=EXTRACT( year FROM age(bday))) AND 
+		(page_max IS NULL OR EXTRACT( year FROM age(bday))<page_max) AND
+		(psize_min IS NULL OR psize_min <= size) AND
+		(psize_max IS NULL OR psize_max >= size) AND
+		(pbody IS NULL OR body = ANY(pbody));
+		 --| ERR ln 2: ... cand || id ...
+		                        ^
+	4.)Korrektur
+		INSERT INTO partnercand (suchender) SELECT searcher FROM partner WHERE id<=500;
+		UPDATE partnercand SET array_append(cand, id)
+		FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		(sex      IS NULL OR sex = ANY(psex)) AND 
+		(hcolor   IS NULL OR hcolor = ANY(phcolor)) AND 
+		(page_min IS NULL OR page_min<=EXTRACT( year FROM age(bday))) AND 
+		(page_max IS NULL OR EXTRACT( year FROM age(bday))<page_max) AND
+		(psize_min IS NULL OR psize_min <= size) AND
+		(psize_max IS NULL OR psize_max >= size) AND
+		(pbody IS NULL OR body = ANY(pbody));
+		 --| ERR ln 2: ... array_append( cand, id) ...
+		 							   ^
+									   
+	5.)Korrektur
+		INSERT INTO partnercand (suchender) SELECT searcher FROM partner WHERE id<=500;
+		UPDATE partnercand SET array_append(partnercand.cand, dbuser.id)
+		FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		(sex      IS NULL OR sex = ANY(psex)) AND 
+		(hcolor   IS NULL OR hcolor = ANY(phcolor)) AND 
+		(page_min IS NULL OR page_min<=EXTRACT( year FROM age(bday))) AND 
+		(page_max IS NULL OR EXTRACT( year FROM age(bday))<page_max) AND
+		(psize_min IS NULL OR psize_min <= size) AND
+		(psize_max IS NULL OR psize_max >= size) AND
+		(pbody IS NULL OR body = ANY(pbody));
+		 --| ERR ln 2: ... array_append(partnercand.cand, dbuser.id) ...
+									   ^
+									   
+	5.)Korrektur
+	Idee: Vielleicht gehts auch so
+		INSERT INTO partnercand (suchender, cand) SELECT searcher, array_append(cand, id)
+		FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		(sex      IS NULL OR sex = ANY(psex)) AND 
+		(hcolor   IS NULL OR hcolor = ANY(phcolor)) AND 
+		(page_min IS NULL OR page_min<=EXTRACT( year FROM age(bday))) AND 
+		(page_max IS NULL OR EXTRACT( year FROM age(bday))<page_max) AND
+		(psize_min IS NULL OR psize_min <= size) AND
+		(psize_max IS NULL OR psize_max >= size) AND
+		(pbody IS NULL OR body = ANY(pbody));
+		 --| ERR ln 1: ... array_append(cand, id) ...
+									   ^
+		 
+	6.)Korrektur
+	Tip von Herr Musil: aggregate functions...
+		INSERT INTO partnercand (suchender, cand) SELECT searcher, array_agg(id)
+		FROM partner, dbuser WHERE 
+		id<=500 AND 
+		searcher<=500 AND
+		searcher!=id AND 
+		(sex      IS NULL OR sex = ANY(psex)) AND 
+		(hcolor   IS NULL OR hcolor = ANY(phcolor)) AND 
+		(page_min IS NULL OR page_min<=EXTRACT( year FROM age(bday))) AND 
+		(page_max IS NULL OR EXTRACT( year FROM age(bday))<page_max) AND
+		(psize_min IS NULL OR psize_min <= size) AND
+		(psize_max IS NULL OR psize_max >= size) AND
+		(pbody IS NULL OR body = ANY(pbody));
+		--| ERR FEHLER:  Spalte »partner.searcher« muss in der GROUP-BY-Klausel erscheinen oder in einer Aggregatfunktion verwendet werden
+				LINE 1: INSERT INTO partnercand (suchender, cand) SELECT searcher, a...
+																		 ^
+			
+Aufgabe 4:
+	1.)Tabelle anlegen
+		CREATE TABLE pair (
+			p1 integer,
+			p2 integer
+		);
+		
+	2.)Grundlegende Idee
+		INSERT INTO pair (p1, p2) 
+		SELECT DISTINCT t1.suchender, t1.cand 
+		FROM partnercand AS t1, partnercand AS t2 WHERE 
+		t1.suchender = t2.cand AND
+		t2.suchender = t1.cand AND
+		t1.suchender < t2.suchender;
+				
+Aufgabe 5:
+	1.)Tabelle anlegen
+		CREATE TABLE single (s integer);
+		
+	2.)Tabelle füllen
+		INSERT INTO single (s) 
+		SELECT id
+		FROM dbuser EXCEPT 
+		SELECT p1
+		FROM pair EXCEPT
+		SELECT p2
+		FROM pair;
+		
+		
+ 

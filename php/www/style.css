@@ -1,0 +1,229 @@
+/* starting stuff */
+@charset "UTF-8";
+article, aside, footer, header, main, nav, section {
+	display: block;
+}
+html, body, h1, h2, h3, ul, li, a, p,
+article, aside, footer, header, main, nav, section {
+	padding: 0;
+	margin: 0;
+}
+
+/* general specials */
+a.back, a.top {
+	color: white;
+	background-color: #1D3A61;
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+}
+a.back:hover, a.top:hover {
+	background-color: #11233b;
+}
+
+/* floater_top */
+.floater_top {
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: auto;
+	top: 0;
+}
+
+/* banner code */
+.banner {
+	background-color: #11233b;
+	color: white;
+	padding: 10px 20px;
+	border-bottom: 1px solid #bbbbbb;
+}
+
+/* navbar code */
+nav {
+	background-color: #20416c;
+}
+nav ul {
+	list-style-type: none;
+}
+nav ul li {
+	display: inline-block;
+	font-variant: small-caps;
+	font-weight: bold;
+}
+nav li:hover{
+	background-color: #11233b;
+}
+nav ul li a, visited{
+	color: white;
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+}
+nav ul li:hover ul{
+	display: block;
+}
+nav ul ul {
+	display: none;
+	position: absolute;
+	background-color: #11233b;
+	border: 5px solid #20416c;
+	border-top: 0;
+	margin-left: -5px;
+	min-width: 225px;
+}
+nav ul ul li {
+	display: block;
+}
+nav ul ul li a, visited {
+	color: white;
+	
+}
+nav ul ul li a:hover {
+	color: #20416c;
+}
+
+/* body code */
+body {
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #f0f0f0;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 15px;
+}
+main {
+	width: 75%;
+	float: left;
+	margin-left: 10px;
+	padding-bottom: 45px;
+} 
+main a.top_mark {
+	display: block;
+	margin-bottom: 100px;
+}
+section {
+	background-color: #bbbbbb;
+	margin-top: 10px;
+	padding: 5px;
+}
+article {
+	background-color: white;
+	margin-top: 5px;
+	padding: 10px 15px;
+}
+article h2 {
+	font-variant: small-caps;
+	font-weight: bold;
+}
+article h3 {
+	font-variant: small-caps;
+	font-weight: bold;
+}
+article ul {
+	padding-left: 15px;
+}
+article pre code {
+	font-size: 12px;
+}
+article ul {
+	list-style-type: none;
+}
+
+/* sidebar code */
+aside {
+	background-color: #bbbbbb;
+	width: 20%;
+	float: right;
+	border: 5px solid #20416c;
+	border-top: 0;
+}
+aside ul {
+	list-style-type: none;
+	background-color: #bbbbbb;
+}
+aside ul li {
+	font-variant: small-caps;
+	font-weight: bold;
+}
+aside ul li:hover {
+	background-color: #11233b;
+}
+aside ul li a, visited{
+	display: block;
+	padding: 2px;
+	text-decoration: none;
+	color: white;
+}
+aside ul li:hover ul{
+	display: block;
+}
+aside ul li ul {
+	display: none;
+	position: right-side;
+	background-color: #11233b;
+	margin-left: 5px;
+}
+aside ul li ul li a:hover {
+	color: #20416c;
+}
+aside ul li ul li ul {
+	display: none;
+	position: right-side;
+	background-color: #11233b;
+	margin-left: 5px;
+}
+aside ul li:hover ul li ul li {
+	display: none;
+}
+aside ul li ul li:hover ul li {
+	display:block;
+}
+
+/* footer code */
+footer {
+	clear: both;
+	background-color: #20416c;
+	position: fixed;
+	width: 100%;
+	margin: 0 auto;
+	bottom: 0;
+}
+footer ul {
+	list-style-type: none;
+}
+footer ul li {
+	display: inline-block;
+	font-variant: small-caps;
+	font-weight: bold;
+}
+footer ul li:hover{
+	background-color: #11233b;
+}
+footer ul li a, visited{
+	color: white;
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+}
+footer ul li:hover ul{
+	display: block;
+}
+footer ul ul {
+	display: none;
+	position: absolute;
+	background-color: #11233b;
+	border: 5px solid #20416c;
+	border-bottom: 0;
+	margin-left: -5px;
+	min-width: 225px;
+	bottom: 37px;
+}
+footer ul ul li {
+	display: block;
+}
+footer ul ul li a, visited {
+	color: white;	
+}
+footer ul ul li a:hover {
+	color: #20416c;
+}

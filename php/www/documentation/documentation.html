@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Projekt-Aufgabe</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../style.css">
+		<!--[if lt IE 9]>
+		<script>
+			document.createElement("article");
+			document.createElement("aside");
+			document.createElement("footer");
+			document.createElement("header");
+			document.createElement("main");
+			document.createElement("nav");
+			document.createElement("section");
+		</script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="floater_top">
+			<header class="banner">
+				<h1>SQL Documentation</h1>
+			</header>
+			<nav>
+				<ul>
+					<li><a href="http://timf.informatik-sgh.de" class="back">[back]</a></li>
+				</ul>
+			</nav>
+			<aside>
+				<ul>
+					<li><a href="#section 1 top">Aufgabenstellung</a>
+					<ul>
+							<li><a href="#section 1 aufgabe">Aufgabe</a></li><li>
+							<a href="#section 1 abgabe">Abgabe</a></li><li>
+							<a href="#section 1 bewertung">Bewertung</a></li><li>
+							<a href="#section 1 hinweise">Hinweise und Hilfen</a></li>
+					</ul>
+					</li><li><a href="#section 2 top">Bewältigung der Aufgaben</a>
+						<ul>
+							<li><a href="#section 2 lsg1">Lösung 1</a></li><li>
+							<a href="#section 2 lsg2">Lösung 2</a></li><li>
+							<a href="#section 2 lsg3">Lösung 3</a></li><li>
+							<a href="#section 2 lsg4">Lösung 4</a></li><li>
+							<a href="#section 2 lsg5">Lösung 5</a></li>
+						</ul>
+					</li>
+				</ul>
+			</aside>
+		</div>
+
+		
+		<main>
+			<a Name="top" class="top_mark"></a>
+			<section>
+				<a Name="section 1 top"></a>
+				<h2>Projekt-Aufgabe bis 14.12.</h2>
+				<article>
+					<a Name="section 1 aufgabe"></a>
+					<h2>Aufgabe</h2>
+
+					<p>
+					Die Dateien <a href="dbuser.sql">dbuser.sql</a> und <a href="partner.sql">partner.sql</a>  beinhalten die Datenbank-Queries um in den
+					Tabellen <code>dbuser</code> und <code>partner</code> ca. 10.000 Test-Benutzer mit ihrem Partner-Profil anzulegen. Beide Dateien gehen
+					 von leeren Tabellen aus.
+					</p>
+					<p>
+					Einige Einträge im Partner-Profil haben den Un-Wert <code>NULL</code>. Das bedeutet, dass der Benutzer an dieser Stelle keine Einschränkung
+					 bzgl. des Partners macht. Wenn also z.B. <code>psize_min</code> auf <code>NULL</code> gesetzt ist, verlangt der Benutzer keine Mindestgröße.
+					</p>
+					<h3>Bewältige folgende Aufgaben:</h3>
+					<ol>
+						<li>Lies beide Dateien in deine Datenbank ein.</li>
+						<li>Entwickle eine oder mehrere Queries, mit denen für jeden Benutzer alle möglichen Partner angezeigt werden. Berücksichtige dabei
+						die <code>NULL</code>-Einträge richtig.</li>
+						<li>Erzeuge eine Tabelle <code>partnercand</code>, in der für jeden Benutzer alle möglichen Partner-Kandidaten gespeichert sind, also
+						alle anderen Benutzer, die
+						sein Partner-Profil erfüllen. Umgekehrt muss der Benutzer selbst <i>nicht</i> die Partner-Profile seiner Partner-Kandidaten
+						erfüllen. Die Zuordnung von Benutzer zu Partner-Kandidat ist also nicht symmetrisch.</li>
+						<li>Erzeuge eine Tabelle <code>pair</code> mit 2 Spalten, nämlich <code>p1</code> und <code>p2</code>. Beide Spalten enthalten die 
+						Benutzer-IDs einer möglichen Paarung. Das bedeutet, dass beide Partner gegenseitig das Partner-Profil des jeweils anderen erfüllen.
+						Jede Paarung darf nur einmal erscheinen, die kleinere Benutzer-ID muss in <code>p1</code> stehen, die größere in <code>p2</code>. Es müssen alle möglichen 
+						Paarungen aufgelistet werden.</li>
+						<li>Erzeuge eine Tabelle <code>single</code> mit einer einzigen Spalte, die die IDs der nicht vermittelbaren Benutzer enthält.</li>
+						<li>Dokumentiere deine Arbeit in HTML, indem du z.B. diese Datei oder die Zusammenfassung für die Klausur kopierst und als
+						Ausgangspunkt nimmst. Die HTML-Datei mit deiner Dokumentation muss <code>projekt1.html</code> heißen.</li>
+					</ol>
+					<p>
+					Die Verarbeitung der Test-Daten sollte nur in der Datenbank erfolgen. Die Verwendung von externen Programmen sollte nur im Notfall
+					geschehen und gilt als wenig elegant.
+					</p>
+					<p>
+					Ihr dürft gerne zusammen arbeiten, aber wichtig ist, dass am Ende jeder ein eigenes Ergebnis vorlegt und alles verstanden hat.
+					Trittbrettfahrer werden bei der abschließenden Einzelbefragung schnell entlarvt.
+					</p>
+					
+					<a Name="section 1 abgabe"></a>
+					<h2>Abgabe</h2>
+					<p>
+					Die Abgabe erfolgt rein digital bis Sonntag, 14.12.2014, 22:00 Uhr. Bewertet wird, was ab diesem Zeitpunkt in Eurer Datenbank liegt bzw.
+					in Eurem Web-Ordner. Die Einzelbefragung erfolgt dann in der Doppelstunde am Dienstag, 16.12.
+					</p>
+
+					<a Name="section 1 bewertung"></a>
+					<h2>Bewertung</h2>
+					<p>
+					Bewertet werden folgende Punkte:
+					</p>
+					<ul>
+						<li>das Erreichen der Ziele oder Teilziele</li><li>die Eleganz der Lösung</li>
+						<li>die Dokumentation - es geht um Inhalt und gute Lesbarkeit, nicht um kunstvolles HTML-Design.</li>
+						<li>die Einzelbefragung</li>
+					</ul>
+					<p>
+					Die Einzelbefragung hat hauptsächlich den Zweck, entscheiden zu können, in wie weit jemand seine Arbeit auch wirklich verstanden hat.
+					Wenn dabei bei Einzelnen der Anschein entstehen sollte, dass die Ergebnisse durch unverstandes Kopieren von Anderen zustande gekommen sind, 
+					führt das zu gravierenden Abzügen bis im Extremfall zu 0 Punkten.
+					</p>
+
+					<a Name="section 1 hinweise"></a>
+					<h2>Hinweise und Hilfen</h2>
+					<h3>Keine Zeit mit der erneuten Installation von Filezilla verschwenden</h3>
+					<p>
+					Die Dateien <code>dbuser.sql</code> und <code>partner.sql</code> findest du auch auf dem Server im Ordner <code>/home/public/Datebook/</code>.
+					 Damit sollte es eigentlich möglich sein, die Projekt-Aufgabe ganz ohne Filezilla zu bewältigen, was bei einigen zu erheblichem Zeitgewinn führen dürfte ;-)
+					Ihr könnt die Dateien entweder direkt in die Datenbank einlesen, indem Ihr in der Datenbank den vollständigen Pfad angebt, also z.B.
+					</p>					
+					<pre><code>
+	\i /home/public/Datebook/dbuser.sql
+					</code></pre>
+
+					<p>
+					Oder Ihr kopiert Euch die Dateien erst mal in Euren Ordner auf dem Server, indem Ihr in der <i>Shell</i> (nicht in der Datenbank) sagt
+					</p>
+
+					<pre><code>
+	cp /home/public/Datebook/dbuser.sql ./
+	cp /home/public/Datebook/partner.sql ./
+					</code></pre>
+
+					<p>
+					Hier noch ein paar Datenbank-Tricks, die hilfreich sein könnten.
+					</p>
+
+					<br><h3><code>SELECT</code>-Ausgabe als Werte für <code>INSERT</code> benutzen</h3>
+					<p>
+					Es ist möglich, die Ausgabe einer <code>SELECT</code>-Query als Eingabe für eine <code>INSERT</code>-Query zu verwenden. Voraussetzung ist,
+					 dass die Typen der Spalten
+					übereinstimmen oder zuminsest ineinander umgewandelt werden können. Im folgenden Beispiel werden neue Zeilen in die Tabelle <code>news</code> eingefügt.
+					Die Werte kommen dabei aus einer <code>SELECT</code>-Query, die drei Spalten ausgibt, nämlich in der ersten Spalte die konstante Zahl 2,
+					 in der zweiten die <code>id</code> und in der dritten die konstante Zeichenkette <code>'Du bist so schnucklig.'</code>.
+					Diese Ausgabe wird in die Tabelle <code>news</code> kopiert. Dabei werden die Werte der drei Spalten als Werte für <code>sender</code>,<code>reciever</code> und <code>text</code>
+					verwendet. Es entsteht praktisch eine Massennachricht von Benutzer 2 an alle, deren ID größer als 1000 ist. 
+					</p>
+					<pre><code>
+	INSERT INTO news (sender,reciever,message) SELECT 2,id,
+	'Du bist so schnucklig.' FROM dbuser WHERE 1000&lt;id;
+					</code></pre>
+
+					<h3>Gleiche Zeilen in der Ausgabe vermeiden</h3>
+					<p>
+					Es kann sein, dass eine <code>SELECT</code>-Query mehrere gleiche Zeilen in der Ausgabe erzeugt. Wenn man nur an verschiedenen Zeilen
+					interessiert ist, erreicht man das durch
+					den Zusatz <code>DISTINCT</code>. Im folgenden werden also alle Kombinationen aus Größe und Geschlecht nur einmal ausgegeben.
+					</p>
+					<pre><code>
+	SELECT DISTINCT size, sex FROM dbuser;
+					</code></pre>
+
+					<h3>Auf <code>NULL</code> überprüfen</h3>
+					<p>
+					In der <code>WHERE</code>-Bedingung kann es nützlich sein zu überprüfen, ob ein Wert <code>NULL</code> ist.
+					</p>
+					<pre><code>
+	SELECT searcher, psize_min FROM partner 
+	WHERE psize_max IS NULL AND searcher&lt;500;
+					</code></pre>
+
+					<h3>Name einer Spalte in der Ausgabe verändern</h3>
+					<p>
+					Man kann den Namen einer Spalte in der Ausgabe bestimmen.
+					</p>
+					<pre><code>
+	SELECT searcher AS id, psize_max-psize_min AS spanne FROM partner 
+	WHERE psize_max IS NOT NULL AND psize_min IS NOT NULL;
+					</code></pre>
+
+					<h3>Gleiche Spaltennamen bei verschiedenen Tabellen</h3>
+					<p>
+					Nehmen wir mal an, es gäbe 2 Tabellen <code>t1</code> und <code>t2</code>, die beide über eine Spalte <code>id</code> verfügen. Nun werden beide Tabellen in einer <code>SELECT</code>-Query miteinander
+					verbunden. Dabei möchte man <code>id</code> der einen Tabelle ausgeben und <code>id</code> der anderen Tabelle in der 
+					<code>WHERE</code>-Bedingung verwenden. Jetzt kann man nicht
+					einfach <code>id</code> schreiben, weil dann nicht klar wäre, welche der beiden gleichnamigen Spalten man meint. Die Angabe wird erst eindeutig, wenn man
+					den Namen der Tabelle mit angibt. Das geht, indem man den Namen der Tabelle dem Spaltennamen voranstellt. Beide sind durch einen Punkt
+					voneinander getrennt. Also z.B. so:
+					</p>
+					<pre><code>
+	SELECT t1.id, kosten FROM t1, t2 WHERE t2.id=kunde;
+					</code></pre>
+
+					<h3>Name einer Tabelle innerhalb der Query festlegen</h3>
+					<p>
+					Das ist jetzt ein bisschen trickreich. Nehmen wir mal an, wir wollen Benutzer mit gleichem Namen finden. Dann müssen wir die Tabelle <code>dbuser</code>
+					mit sich selbst verbinden und die entsprecheneden Zeilen in der <code>WHERE</code>-Bedingung herausfiltern. Dabei entsteht das Problem, dass wir irgendwie
+					zwischen der 1. <code>dbuser</code>-Tabelle und der 2. <code>dbuser</code>-Tabelle unterscheiden können müssen. Das geht, indem man innerhalb der Query beiden
+					<code>dbuser</code>-Tabellen verschiedene Namen gibt, hier <code>u1</code> und <code>u2</code>.
+					</p>
+					<pre><code>
+	SELECT u1.id, u2.id, u1.name FROM dbuser AS u1, dbuser AS u2 
+	WHERE u1.name=u2.name AND u1.id&lt;u2.id;
+					</code></pre>
+
+					<h3>Tabellen trickreich miteinander verbinden</h3>
+					<p>
+					Mit <code>LEFT JOIN</code> und <code>FULL JOIN</code> lassen sich Tabellen auf trickreichere Art miteinander verbinden. 
+					Näheres dazu steht in der
+					<a href="http://www.postgresql.org/docs/9.0/static/sql-select.html"> Doku des <code>SELECT</code>-Kommandos</a> unter dem Abschnitt "join_type".
+					Vielleicht könnt ihr auch schon anhand des folgenden Beispiels erkennen, was der Unterschied ist zu der Art, wie Ihr bisher
+					 Tabellen verbunden habt.
+					</p>
+					<pre><code>
+	SELECT * FROM dbuser LEFT JOIN partner ON searcher=id 
+	WHERE searcher IS NULL;
+					</code></pre>
+				</article>
+			</section>
+			<section>
+			<a Name="section 2 top"></a>
+				<h2>Bewältigung der Aufgaben</h2>
+				<article>
+					<p>
+					Meine vollständige Dokumentation ist in Notizen-info.hmtl nach zulesen
+					</p>
+
+					<ol>
+						<li>
+							<a Name="section 2 lsg1"></a>
+							<b>Lösung:</b><br> 
+							<pre><code>
+	\i /home/public/Datebook/dbuser.sql
+	\i /home/public/Datebook/partner.sql
+							</code></pre>
+						</li>
+						<li>
+							<a Name="section 2 lsg2"></a>
+							<b>Lösung:</b><br> 
+							<pre><code>SELECT searcher, id
+	FROM dbuser, partner WHERE
+	searcher != id AND
+	(sex = ANY(psex) OR psex IS NULL) AND
+	(page_min &lt;= EXTRACT(year FROM age(bday)) OR page_min IS NULL) AND
+	(EXTRACT(year FROM age(bday)) &lt;= page_max OR page_max IS NULL) AND	
+	(psize_min &lt;= size OR psize_min IS NULL) AND
+	(size &lt;= psize_max OR psize_max IS NULL) AND
+	(hcolor = ANY(phcolor) OR phcolor IS NULL) AND
+	(ecolor = ANY(pecolor) OR pecolor IS NULL) AND
+	(body = ANY(pbody) OR pbody IS NULL);
+							</code></pre>
+						</li>
+						<li>
+							<a Name="section 2 lsg3"></a>
+							<h3>Lösung</h3>
+							<pre><code>CREATE TABLE partnercand ( suchender integer, cand integer);
+	INSERT INTO partnercand (suchender, cand) 
+		SELECT searcher, id
+		FROM dbuser, partner WHERE
+		searcher != id AND
+		(sex = ANY(psex) OR psex IS NULL) AND
+		(page_min &lt;= EXTRACT(year FROM age(bday)) OR page_min IS NULL) AND
+		(EXTRACT(year FROM age(bday)) &lt;= page_max OR page_max IS NULL) AND	
+		(psize_min &lt;= size OR psize_min IS NULL) AND
+		(size &lt;= psize_max OR psize_max IS NULL) AND
+		(hcolor = ANY(phcolor) OR phcolor IS NULL) AND
+		(ecolor = ANY(pecolor) OR pecolor IS NULL) AND
+		(body = ANY(pbody) OR pbody IS NULL);
+							</code></pre>
+						</li>
+						<li>
+							<a Name="section 2 lsg4"></a>
+							<h3>Lösung:</h3>
+							<pre><code>CREATE TABLE pair (
+		p1 integer,
+		p2 integer
+	);
+	INSERT INTO pair (p1, p2) 
+		SELECT t1.suchender, t1.cand 
+		FROM partnercand AS t1, partnercand AS t2 WHERE 
+		t1.suchender = t2.cand AND
+		t2.suchender = t1.cand AND
+		t1.suchender &lt; t2.suchender;
+							</code></pre>
+						</li>
+						<li>
+							<a Name="section 2 lsg5"></a>
+							<h3>Lösung:</h3>
+							<pre><code>CREATE TABLE single (s integer);
+	INSERT INTO single (s) 
+		SELECT id
+		FROM dbuser EXCEPT 
+		SELECT p1
+		FROM pair EXCEPT
+		SELECT p2
+		FROM pair;
+							</code></pre>
+						</li>
+					</ol>
+				</article>
+			</section>
+		</main>
+		<footer>
+			<ul>
+				<li><a href="http://timf.informatik-sgh.de" class="back">[back]</a></li><li>
+				<a href="#top" class="top">[top]</a></li>
+				</li>
+			</ul>			
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,254 @@
+/**********************************************
+*  <<| DATBOOK | official CSS stylesheet |>>  *
+***********************************************
+*  version: 1.0								  *
+*  main author: Tim Fischer					  *
+*  owner: informatik kurs SGH 2014/2015  	  *
+***********************************************
+*  --COLOR SCHEME--							  *
+*  backgraound color:  #f0f0f0				  *
+*  main color dark:    #560000				  *
+*  main color light:   #6b0000				  *
+*  main color special: #650000				  *
+*  --STD FONT--								  *
+*  font-family: Helvetica, Arial, sans-serif  *
+*  font size: 15px							  *
+*  --STD build--							  *
+*  display									  *
+*  postion									  *
+*  float									  *
+*  clear									  *
+*  width/height								  *
+*  bottom/left/right/top					  *
+*  margin [b/l/r/t]							  *
+*  padding [b/l/r/t]						  *
+*  color									  *
+*  background color							  *
+*  border									  *
+*  font										  *
+*  ...										  *
+***********************************************/
+
+/* starting stuff */
+@charset "UTF-8";
+article, aside, footer, header, main, nav, section {
+	display: block;
+}
+html, body, h1, h2, h3, ul, li, a, p,
+article, aside, footer, header, main, nav, section {
+	padding: 0;
+	margin: 0;
+}
+ul {
+	list-style-type: none;
+}
+a, li, h2, h3 {
+	font-weight: bold;
+}
+
+/* body */
+body {
+	width: 100%;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #f0f0f0;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	font-variant: small-caps;
+}
+
+/* floater_top */
+.floater_top {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* header */
+.banner {
+	padding: 10px 20px;
+	color: white;
+	background-color: #560000;
+	border-bottom: 1px solid #bbbbbb;
+}
+
+/* navbar */
+nav {
+	background-color: #6b0000;
+}
+nav a {
+	display: block;
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+}
+nav ul li {
+	display: inline-block;
+}
+nav ul li:hover {
+	background-color: #560000;
+}
+nav ul li:hover a {
+	color: #bbbbbb;
+}
+nav ul li:hover ul li a {
+	color: white;
+}
+nav ul li ul {
+	display: none;
+	position: absolute;
+	min-width: 150px;
+	margin-left: -5px;
+	background-color: #560000;
+	border: 5px solid #6b0000;
+	border-top: 0;
+}
+nav ul li ul li {
+	display: block;
+}
+nav ul li:hover ul {
+	display: block;
+}
+nav ul li ul li:hover {
+	background-color: #6b0000;
+}
+nav ul li ul li:hover a {	
+	color: #bbbbbb;
+}
+
+/* sidebar */
+aside {
+	float: right;
+	width: 20%;
+	background-color: #bbbbbb;
+	border: 5px solid #6b0000;
+	border-top: 0;
+}
+aside ul {
+	background-color: #bbbbbb;
+}
+aside ul li {
+	display: block;
+}
+aside ul li:hover {
+	background-color: #650000;
+}
+aside ul li:hover a {
+	color: #bbbbbb;
+}
+aside ul li:hover ul {
+	display: block;
+}
+aside ul li:hover ul li a {
+	color: white;
+}
+aside ul li a, visited{
+	display: block;
+	padding: 2px;
+	color: white;
+	text-decoration: none;
+}
+aside ul li ul {
+	display: none;
+	background-color: #560000;
+	border: 0;
+	border-bottom: 5px solid #6b0000;
+	border-left: 5px solid #6b0000;
+}
+aside ul li ul li:hover a {
+	color: #bbbbbb;
+}
+aside ul li:hover ul li ul {
+	display: none;
+}
+aside ul li:hover ul li ul li a{
+	color: white;
+}
+aside ul li ul li:hover ul {
+	display: block;
+}
+aside ul li ul li ul li:hover a{
+	color: #bbbbbb;
+}
+
+/* main */
+main {
+	float: left;
+	width: 75%;
+	padding: 10px;
+	padding-bottom: 45px;
+} 
+main a.top_mark {
+	display: block;
+	margin-bottom: 100px;
+}
+main section {
+	margin-top: 5px;
+	padding: 10px 15px;
+	background-color: #bbbbbb;
+}
+main section article {
+	margin-top: 5px;
+	padding: 10px 15px;
+	background-color: white;
+}
+main section article ul {
+	padding-left: 15px;
+}
+main section article pre code {
+	font-size: 12px;
+}
+
+/* footer */
+footer {
+	position: fixed;
+	left: 0px;
+	bottom: 0;
+	width: 100%;
+	height: 37px;
+	margin: 0px auto;
+	background-color: #6b0000;
+}
+footer a {
+	display: block;
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+}
+footer ul li {
+	display: inline-block;
+}
+footer ul li:hover {
+	background-color: #560000;
+}
+footer ul li:hover a {
+	color: #bbbbbb;
+}
+footer ul li:hover ul{
+	display: block;
+}
+footer ul li ul {
+	display: none;
+	position: fixed;
+	bottom: 37px;
+	min-width: 225px;
+	margin-left: -5px;
+	background-color: #560000;
+	border: 5px solid #6b0000;
+	border-bottom: 0;
+}
+footer ul li:hover ul li a {
+	color: white;
+}
+footer ul li ul li {
+	display: block;
+}
+footer ul li ul li:hover {
+	background-color: #6b0000;
+}
+footer ul li ul li:hover a {
+	color: #bbbbbb;
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Notizen-info</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="robots" content="noindex,nofollow,noarchive" />
+</head>
+
+<body>
+
+<h1>Notizen zu den Projektaufgaben</h1>
+
+<p>
+<b>Helpful Links</b><br>
+<a href="http://www.postgresql.org/docs/9.1/static/arrays.html">www.postgresql.org/docs/9.1/static/arrays.html</a><br>
+<a href="http://www.postgresql.org/docs/9.1/static/functions-array.html">www.postgresql.org/docs/9.1/static/functions-array.html</a><br>
+<a href="http://www.postgresql.org/docs/9.1/static/sql.html">www.postgresql.org/docs/9.1/static/sql.html</a> 
+</p>
+
+<p><b><i>
+Aufgaben: 
+</i></b></p>
+<ol>
+	<li><ul>
+		<li><b>Ursprüngliche Query analysieren</b><br>
+			<code>SELECT searcher,id,name,sex,age(bday),size,hcolor,ecolor,body,city 
+			FROM partner, dbuser WHERE 
+			searcher!=id AND 
+			sex = ANY(psex) AND 
+			hcolor = ANY(phcolor) AND 
+			page_min&lt;=EXTRACT( year FROM age(bday)) AND 
+			EXTRACT( year FROM age(bday))&lt;page_max;</code><br>
+			<i>-- Zu viel!</i>
+		</li>
+		<li><b>Suchfeld kürzen</b><br>
+			<code>SELECT searcher,id,name,sex,age(bday),size,hcolor,ecolor,body,city 
+			FROM partner, dbuser WHERE 
+			id&lt;=500 AND 
+			searcher&lt;=500 AND 
+			searcher!=id AND 
+			sex = ANY(psex) AND 
+			hcolor = ANY(phcolor) AND
+			page_min&lt;=EXTRACT( year FROM age(bday)) AND 
+			EXTRACT( year FROM age(bday))&lt;page_max AND
+			psize_min &lt;= size AND
+			psize_max &gt;= size AND
+			body = ANY(pbody);</code><br>
+			<i>-- Suchfeld auf 500 IDs kürzen</i>
+		</li>
+		<li><b><code>NULL</code>-Werte filtern</b><br>
+			Idee: <code>foo IS NULL OR foo ~ bar AND ...</code><br>
+			<code>SELECT searcher,id,name,sex,age(bday),size,hcolor,ecolor,body,city 
+			FROM partner, dbuser WHERE 
+			id&lt;=500 AND 
+			searcher&lt;=500 AND 
+			searcher!=id AND 
+			sex IS NULL OR sex = ANY(psex) AND 
+			hcolor IS NULL OR hcolor = ANY(phcolor) AND 
+			page_min IS NULL OR page_min&lt;=EXTRACT( year FROM age(bday)) AND 
+			page_max IS NULL OR EXTRACT( year FROM age(bday))&lt;page_ma) AND
+			psize_min IS NULL OR psize_min &lt;= size AND
+			psize_max IS NULL OR psize_max &gt;= size AND
+			pbody IS NULL OR body = ANY(pbody);</code><br>
+			<i>-- Herr Musil: ! <code>AND</code> stärker als <code>OR</code><br>
+			-- <code>(foo IS NULL OR foo ~ bar) AND ...</code></i>
+		</li>
+		<li><b>Korrektur</b><br>
+			<code>SELECT searcher, id
+			FROM dbuser, partner WHERE
+			searcher != id AND
+			(sex = ANY(psex) 								OR psex 		IS NULL) AND
+			(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+			(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+			(psize_min &lt;= size 							OR psize_min 	IS NULL) AND
+			(size &lt;= psize_max 							OR psize_max 	IS NULL) AND
+			(hcolor = ANY(phcolor) 							OR phcolor 		IS NULL) AND
+			(ecolor = ANY(pecolor) 							OR pecolor 		IS NULL) AND
+			(body = ANY(pbody) 								OR pbody 		IS NULL);</code><br>
+			<i>-- Fertig!</i>
+		</li>
+	</ul></li>
+	<li><b>Möglichkeiten</b><ol>
+		<li><b>Einfache Variante</b><ul>
+			<li><b>Tabelle <code>partnercand</code> einrichten</b><br>
+				<code>CREATE TABLE partnercand ( suchender integer, cand integer);</code>
+			</li>
+			<li><b><code>partnercand</code> füllen</b><br>
+				<code>INSERT INTO partnercand (suchender, cand) 
+				SELECT searcher, id
+				FROM dbuser, partner WHERE
+				searcher != id AND
+				(sex = ANY(psex) 								OR psex 		IS NULL) AND
+				(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+				(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+				(psize_min &lt;= size 							OR psize_min 	IS NULL) AND
+				(size &lt;= psize_max 							OR psize_max 	IS NULL) AND
+				(hcolor = ANY(phcolor) 							OR phcolor 		IS NULL) AND
+				(ecolor = ANY(pecolor) 							OR pecolor 		IS NULL) AND
+				(body = ANY(pbody) 								OR pbody 		IS NULL);</code>
+			</li>
+		</ul></li>
+		<li><b>Arrayspeicher Methode <i>[WIP]</i></b><ul>
+			<li><b>Tabelle <code>partnercand</code> einrichten</b><br>
+				<code>CREATE TABLE partnercand ( suchender integer REFERENCE dbuser(id), cand integer[]);</code>
+			</li>
+			<li><b>Tabelle füllen</b><br>
+				<code>		
+				INSERT INTO partnercand (suchender, cand)
+				SELECT searcher, id
+				FROM dbuser, partner WHERE
+				searcher != id AND
+				(sex = ANY(psex) 								OR psex 		IS NULL) AND
+				(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+				(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+				(psize_min &lt;= size 							OR psize_min 	IS NULL) AND
+				(size &lt;= psize_max 							OR psize_max 	IS NULL) AND
+				(hcolor = ANY(phcolor) 							OR phcolor 		IS NULL) AND
+				(ecolor = ANY(pecolor) 							OR pecolor 		IS NULL) AND
+				(body = ANY(pbody) 								OR pbody 		IS NULL);</code><br>
+				<i>-- Dopplung der ID in partnercand</i>
+			</li>
+			<li><b>Korrektur</b><br>
+				Idee: eine ID | passende PartnerIDs in Array<br>
+				<code>INSERT INTO partnercand (suchender) 
+				SELECT searcher 
+				FROM partner WHERE 
+				searcher&lt;=500;
+				UPDATE partnercand SET cand || id
+				FROM dbuser, partner WHERE
+				searcher != id AND
+				(sex = ANY(psex) 								OR psex 		IS NULL) AND
+				(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+				(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+				(psize_min &lt;= size 							OR psize_min 	IS NULL) AND
+				(size &lt;= psize_max 							OR psize_max 	IS NULL) AND
+				(hcolor = ANY(phcolor) 							OR phcolor 		IS NULL) AND
+				(ecolor = ANY(pecolor) 							OR pecolor 		IS NULL) AND
+				(body = ANY(pbody) 								OR pbody 		IS NULL);</code><br>
+				<i>--| <code>ERR ln 2: ... cand || id ...</code></i><br>
+			</li>
+			<li><b>Korrektur</b><br>
+				<code>INSERT INTO partnercand (suchender) 
+				SELECT searcher 
+				FROM partner WHERE 
+				searcher&lt;=500;
+				UPDATE partnercand SET array_append(cand, id)
+				FROM dbuser, partner WHERE
+				searcher != id AND
+				(sex = ANY(psex) 								OR psex 		IS NULL) AND
+				(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+				(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+				(psize_min &lt;= size 							OR psize_min 	IS NULL) AND
+				(size &lt;= psize_max 							OR psize_max 	IS NULL) AND
+				(hcolor = ANY(phcolor) 							OR phcolor 		IS NULL) AND
+				(ecolor = ANY(pecolor) 							OR pecolor 		IS NULL) AND
+				(body = ANY(pbody) 								OR pbody 		IS NULL);</code><br>
+				<i>--| <code>ERR ln 2: ... array_append(cand, id) ...</code></i><br>
+			</li>
+			<li><b>Korrektur</b><br>
+				<code>INSERT INTO partnercand (suchender) 
+				SELECT searcher 
+				FROM partner WHERE 
+				searcher&lt;=500;
+				UPDATE partnercand SET array_append(partnercand.cand, dbuser.id)
+				FROM dbuser, partner WHERE
+				searcher != id AND
+				(sex = ANY(psex) 								OR psex 		IS NULL) AND
+				(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+				(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+				(psize_min &lt;= size 							OR psize_min 	IS NULL) AND
+				(size &lt;= psize_max 							OR psize_max 	IS NULL) AND
+				(hcolor = ANY(phcolor) 							OR phcolor 		IS NULL) AND
+				(ecolor = ANY(pecolor) 							OR pecolor 		IS NULL) AND
+				(body = ANY(pbody) 								OR pbody 		IS NULL);</code><br>
+				<i>--| <code>ERR ln 2: ... array_append(partnercand.cand, dbuser.id) ...</code></i><br>
+			</li>
+			<li><b>Korrektur</b><br>
+				<code>INSERT INTO partnercand (suchender) 
+				SELECT searcher 
+				FROM partner WHERE 
+				searcher&lt;=500;
+				UPDATE partnercand SET array_append(partnercand(cand), dbuser(id))
+				FROM dbuser, partner WHERE
+				searcher != id AND
+				(sex = ANY(psex) 								OR psex 		IS NULL) AND
+				(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+				(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+				(psize_min &lt;= size 							OR psize_min 	IS NULL) AND
+				(size &lt;= psize_max 							OR psize_max 	IS NULL) AND
+				(hcolor = ANY(phcolor) 							OR phcolor 		IS NULL) AND
+				(ecolor = ANY(pecolor) 							OR pecolor 		IS NULL) AND
+				(body = ANY(pbody) 								OR pbody 		IS NULL);</code><br>
+				<i>--| <code>ERR ln 2: ... array_append(partnercand(cand), dbuser(id)) ...</code></i><br>
+			</li>
+			<li><b>Korrektur</b><br>
+				Idee: vielleicht auch so<br>
+				<code>INSERT INTO partnercand (suchender, cand) 
+				SELECT searcher, array_append(cand, id)
+				FROM dbuser, partner WHERE
+				searcher != id AND
+				(sex = ANY(psex) 								OR psex 		IS NULL) AND
+				(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+				(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+				(psize_min &lt;= size 							OR psize_min 	IS NULL) AND
+				(size &lt;= psize_max 							OR psize_max 	IS NULL) AND
+				(hcolor = ANY(phcolor) 							OR phcolor 		IS NULL) AND
+				(ecolor = ANY(pecolor) 							OR pecolor 		IS NULL) AND
+				(body = ANY(pbody) 								OR pbody 		IS NULL);</code><br>
+				<i>--| <code>ERR ln 1: ... array_append(cand, id) ...</code></i><br>
+			</li>
+			<li><b>Tip</b><br>
+				Tip von Herr Musil: aggregate functions...<br>
+				<code>INSERT INTO partnercand (suchender, cand) 
+				SELECT searcher, array_agg(id)
+				FROM dbuser, partner WHERE
+				searcher != id AND
+				(sex = ANY(psex) 								OR psex 		IS NULL) AND
+				(page_min &lt;= EXTRACT(year FROM age(bday)) 	OR page_min 	IS NULL) AND
+				(EXTRACT(year FROM age(bday)) &lt;= page_max 	OR page_max 	IS NULL) AND	
+				(psize_min &lt;= size 							OR psize_min 	IS NULL) AND
+				(size &lt;= psize_max 							OR psize_max 	IS NULL) AND
+				(hcolor = ANY(phcolor) 							OR phcolor 		IS NULL) AND
+				(ecolor = ANY(pecolor) 							OR pecolor 		IS NULL) AND
+				(body = ANY(pbody) 								OR pbody 		IS NULL);</code><br>
+				<i>--| <code>ERR:  Spalte »partner.searcher« muss in der GROUP-BY-Klausel erscheinen oder in einer Aggregatfunktion verwendet werden<br>
+							 ln 1: INSERT INTO partnercand (suchender, cand) SELECT searcher, a...</code></i><br>
+			</li>
+		</ul></li>
+	</ol></li>
+	<li><ul>
+		<li><b>Tabelle einrichten</b><br>
+			<code>CREATE TABLE pair (p1 integer, p2 integer);</code><br>
+		</li>
+		<li><b>Tabelle füllen</b><br>
+			<code>INSERT INTO pair (p1, p2) 
+			SELECT DISTINCT t1.suchender, t1.cand 
+			FROM partnercand AS t1, partnercand AS t2 WHERE 
+			t1.suchender = t2.cand AND
+			t2.suchender = t1.cand;</code><br>
+		</li>
+		<li><b>Bei Tabelle füllen Dopplungen vermeiden</b><br>
+			<code>INSERT INTO pair (p1, p2) 
+			SELECT DISTINCT t1.suchender, t1.cand 
+			FROM partnercand AS t1, partnercand AS t2 WHERE 
+			t1.suchender = t2.cand AND
+			t2.suchender = t1.cand AND
+			t1.suchender &lt; t2.suchender;</code><br>
+		</li>
+	</ul></li>
+	<li><ul>
+		<li><b>Tabelle einrichten</b><br>
+			<code>CREATE TABLE single (s integer);</code><br>
+		</li>
+		<li><b>Tabelle füllen</b><br>
+			<code>INSERT INTO single (s) 
+			SELECT id
+			FROM dbuser EXCEPT 
+			SELECT p1
+			FROM pair EXCEPT
+			SELECT p2
+			FROM pair;
+			</code><br>
+		</li>
+	</ul></li>
+</ol>
+
+</body>
+</html>
