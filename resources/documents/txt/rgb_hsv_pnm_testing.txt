@@ -1,0 +1,96 @@
+#extract hsl data from color image -----------------------------------------------------------------------
+  def rgb_to_hsv(image)
+    return nil if image.type != :ppm 
+
+    rgb = image.pixels.dup
+    hsv = []
+    rgb.each_with_index do |row, y|
+      hsv[y] = []
+      row.each_with_index do |pixel, x|
+        h, s, v = pixel_rgb_to_hsv(pixel, image.maxgray)
+        hsv[y][x] = [h, s, v]
+      end
+    end
+    
+    value = hsv.map { |row| row.map { |pixel| pixel = pixel[2] }}
+    saturation = hsv.map { |row| row.map { |pixel| pixel = pixel[1] }}
+    hue = hsv.map { |row| row.map { |pixel| pixel = pixel[0] }}
+
+    return hue, saturation, value
+  end
+  
+  #compress hsv data into color image
+  def hsv_to_rgb(h, s, v, maxgray)
+    return nil if h.length != s.length or h.length != v.length or \
+                  h[0].length != s[0].length or h[0].length != v[0].length
+    
+    rgb = []
+    h.length.times do |y|
+      rgb[y] = []
+      h[0].length.times do |x|
+        rgb[y][x] = pixel_hsv_to_rgb([h[y][x], s[y][x], v[y][x]], maxgray)
+      end
+    end
+
+    #puts rgb.to_s
+    PNM.create(rgb, {:type => :ppm, :maxgray => maxgray })
+  end
+
+  #convert rgb to hsv values -------------------------------------------------------------------------------
+  def pixel_rgb_to_hsv(pixel, maxgray)
+    r = pixel[0].to_f / maxgray
+    g = pixel[1].to_f / maxgray
+    b = pixel[2].to_f / maxgray
+
+    max = [r, g, b].max
+    min = [r, g, b].min
+    delta = max - min
+
+    #calculate value/brightness
+    v = max
+    
+    #calculate saturation
+    s = max != 0.0 ? delta / max : 0.0
+    
+    #calculate hue
+    if s == 0.0 
+      h = 0.0
+    else
+      if (r == max)
+        h = (g - b) / delta
+      elsif (g == max)
+        h = 2 + (b - r) / delta
+      elsif (b == max)
+        h = 4 + (r - g) / delta
+      end
+
+      h *= 60.0
+      
+      if (h < 0)
+        h += 360.0
+      end
+    end
+
+    return h, s, v
+  end
+  
+  #convert hsv to rgb values -------------------------------------------------------------------------------
+  def pixel_hsv_to_rgb(pixel, maxgray)
+    return nil if pixel.length != 3
+    h = [0.0..360.0].includes? pixel[0] ? pixel[0] : [360,[0,pixel[0]].max].min
+    s = pixel[1]
+    v = pixel[2]
+    
+    c = v * s.to_f
+    x = c * (1.0 - (((h / 60) % 2) - 1).abs)
+    m = v - c.to_f
+
+    rp, gp, bp = c, x, 0 if h >= 0 or h < 60 or h == 360
+    rp, gp, bp = x, c, 0 if h >= 60 or h < 120
+    rp, gp, bp = 0, c, x if h >= 120 or h < 180
+    rp, gp, bp = 0, x, c if h >= 180 or h < 240
+    rp, gp, bp = x, 0, c if h >= 240 or h < 300
+    rp, gp, bp = c, 0, x if h >= 300 or h < 360
+
+    [((rp + m) / maxgray).round.abs, ((gp + m) / maxgray).round.abs, ((bp +m) / maxgray).round.abs]
+  end

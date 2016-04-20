@@ -1,0 +1,249 @@
+Country Code;Country;Capital;Continent;Currency;Currency Code
+AF;Afghanistan;Kabul;Asien;Afghani;AFN
+AL;Albanien;Tirana;Europa;Lek;ALL
+DZ;Algerien;Algier;Afrika;Dinar;DZD
+AS;Amerikanisch Samoa;Pago Pago;Ozeanien;Dollar;USD
+AD;Andorra;Andorra la Vella;Europa;Euro;EUR
+AO;Angola;Luanda;Afrika;Kwanza;AOA
+AI;Anguilla;The Valley;Nordamerika;Dollar;XCD
+AQ;Antarktika;;Antarktika;;
+AG;Antigua und Barbuda;Saint John’s;Nordamerika;Dollar;XCD
+AR;Argentinien;Buenos Aires;Südamerika;Peso;ARS
+AM;Armenien;Jerewan;Asien;Dram;AMD
+AW;Aruba;Oranjestad;Nordamerika;Florin;AWG
+AZ;Aserbaidschan;Baku;Asien;Manat;AZN
+AU;Australien;Canberra;Australien;Dollar;AUD
+BS;Bahamas;Nassau;Nordamerika;Dollar;BSD
+BH;Bahrain;Manama;Asien;Dinar;BHD
+BD;Bangladesch;Dhaka;Asien;Taka;BDT
+BB;Barbados;Bridgetown;Nordamerika;Dollar;BBD
+BY;Belarus;Minsk;Europa;Rubel;BYR
+BE;Belgien;Brüssel;Europa;Euro;EUR
+BZ;Belize;Belmopan;Zentralamerika;Dollar;BZD
+BJ;Benin;Porto-Novo;Afrika;Franc;XOF
+BM;Bermuda;Hamilton;Nordamerika;Dollar;BMD
+BT;Bhutan;Thimphu;Asien;Ngultrum;BTN
+BO;Bolivien;Sucre;Südamerika;Boliviano;BOB
+BA;Bosnien und Herzegowina;Sarajevo;Europa;Konvertible Mark;BAM
+BW;Botswana;Gaborone;Afrika;Pula;BWP
+BV;Bouvetinsel;;Antarktika;Krone;NOK
+BR;Brasilien;Brasília;Südamerika;Real;BRL
+IO;Britisches Territorium im Indischen Ozean;;Afrika;Dollar;USD
+BN;Brunei;Bandar Seri Begawan;Asien;Dollar;BND
+BG;Bulgarien;Sofia;Europa;Lew;BGN
+BF;Burkina Faso;Ouagadougou;Afrika;Franc;XOF
+BI;Burundi;Bujumbura;Afrika;Franc;BIF
+CL;Chile;Santiago;Südamerika;Peso;CLP
+CN;China;Peking;Asien;Yuan;CNY
+CK;Cookinseln;Avarua;Ozeanien;Dollar;NZD
+CR;Costa Rica;San José;Zentralamerika;Colón;CRC
+CW;Curaçao;;Amerika;Gulden;ANG
+DE;Deutschland;Berlin;Europa;Euro;EUR
+DM;Dominica;Roseau;Nordamerika;Dollar;XCD
+DO;Dominikanische Republik;Santo Domingo;Nordamerika;Peso;DOP
+DJ;Dschibuti;Djibouti;Afrika;Franc;DJF
+DK;Dänemark;Copenhagen;Europa;Krone;DKK
+EC;Ecuador;Quito;Südamerika;Dollar;USD
+SV;El Salvador;San Salvador;Zentralamerika;Dollar;USD
+CI;Elfenbeinküste;Yamoussoukro;Afrika;Franc;XOF
+ER;Eritrea;Asmara;Afrika;Nakfa;ERN
+EE;Estland;Tallinn;Europa;Euro;EUR
+FK;Falklandinseln;Stanley;Südamerika;Pfund;FKP
+FJ;Fidschi;Suva;Ozeanien;Dollar;FJD
+FI;Finnland;Helsinki;Europa;Euro;EUR
+FR;Frankreich;Paris;Europa;Euro;EUR
+GF;Französisch-Guayana;Cayenne;Südamerika;Euro;EUR
+PF;Französisch-Polynesien;Papeete;Ozeanien;Franc;XPF
+TF;Französische Süd- und Antarktisgebiete;Port-aux-Français;Antarktika;Euro;EUR
+FO;Färöer-Inseln;Thorshaven;Europa;Krone;DKK
+GA;Gabun;Libreville;Afrika;Franc;XAF
+GM;Gambia;Banjul;Afrika;Dalasi;GMD
+GE;Georgien;Tiflis;Asien;Lari;GEL
+GH;Ghana;Accra;Afrika;Ghana Cedi;GHS
+GI;Gibraltar;Gibraltar;Europa;Pfund;GIP
+GD;Grenada;Saint George's;Nordamerika;Dollar;XCD
+GR;Griechenland;Athen;Europa;Euro;EUR
+GL;Grönland;Nuuk;Nordamerika;Krone;DKK
+GP;Guadeloupe;Basse-Terre;Nordamerika;Euro;EUR
+GU;Guam;Hagåtña;Ozeanien;Dollar;USD
+GT;Guatemala;Guatemala-Stadt;Zentralamerika;Quetzal;GTQ
+GG;Guernsey;Saint Peter Port;Europa;Pfund;GGP
+GN;Guinea;Conakry;Afrika;Franc;GNF
+GW;Guinea-Bissau;Bissau;Afrika;Franc;XOF
+GY;Guyana;Georgetown;Südamerika;Dollar;GYD
+HT;Haiti;Port-au-Prince;Nordamerika;Gourde;HTG
+HM;Heard und McDonaldinseln;;Antarktika;Dollar;AUD
+HN;Honduras;Tegucigalpa;Zentralamerika;Lempira;HNL
+HK;Hongkong;Hongkong;Asien;Dollar;HKD
+IN;Indien;Neu-Delhi;Asien;Rupie;INR
+ID;Indonesien;Jakarta;Asien;Rupiah;IDR
+IM;Insel Man;Douglas;Europa;Pfund;IMP
+IQ;Irak;Bagdad;Asien;Dinar;IQD
+IR;Iran;Teheran;Asien;Rial;IRR
+IE;Irland;Dublin;Europa;Euro;EUR
+IS;Island;Reykjavík;Europa;Krone;ISK
+IL;Israel;Jerusalem;Asien;Schekel;ILS
+IT;Italien;Rom;Europa;Euro;EUR
+JM;Jamaika;Kingston;Nordamerika;Dollar;JMD
+JP;Japan;Tokio;Asien;Yen;JPY
+YE;Jemen;Sanaa;Asien;Rial;YER
+JE;Jersey;Saint Helier;Europa;Pfund-Sterling;JEP
+JO;Jordanien;Amman;Asien;Dinar;JOD
+VG;Jungferninseln (UK);Road Town;Nordamerika;Dollar;USD
+VI;Jungferninseln (US);Charlotte Amalie;Nordamerika;Dollar;USD
+KY;Kaimaninseln;George Town;Nordamerika;Cayman-Dollar;KYD
+KH;Kambodscha;Phnom Penh;Asien;Riel;KHR
+CM;Kamerun;Jaunde;Afrika;Franc;XAF
+CA;Kanada;Ottawa;Nordamerika;Dollar;CAD
+CV;Kap Verde;Praia;Afrika;Escudo;CVE
+KZ;Kasachstan;Astana;Asien;Tenge;KZT
+QA;Katar;Doha;Asien;Dollar;QAR
+KE;Kenia;Nairobi;Afrika;Schilling;KES
+KG;Kirgisistan;Bishkek;Asien;Som;KGS
+KI;Kiribati;Tarawa;Ozeanien;Dollar;AUD
+CC;Kokosinseln;West Island;Australien;Dollar;AUD
+CO;Kolumbien;Bogotá;Südamerika;Peso;COP
+KM;Komoren;Moroni;Afrika;Franc;KMF
+CG;Kongo;Brazzaville;Afrika;Franc;CDF
+CD;Kongo, Demokratische Republik;Kinshasa;Afrika;Franc;CDF
+XK;Kosovo;Pristina;Europa;Euro;EUR
+HR;Kroatien;Zagreb;Europa;Kuna;HRK
+CU;Kuba;Havanna;Nordamerika;Peso;CUP
+KW;Kuwait;Kuwait City;Asien;Dinar;KWD
+LA;Laos;Vientiane;Asien;Kip;LAK
+LS;Lesotho;Maseru;Afrika;Loti;LSL
+LV;Lettland;Riga;Europa;Euro;EUR
+LB;Libanon;Beirut;Asien;Pfund;LBP
+LR;Liberia;Monrovia;Afrika;Dollar;LRD
+LY;Libyen;Tripolis;Afrika;Dinar;LYD
+LI;Liechtenstein;Vaduz;Europa;Franken;CHF
+LT;Litauen;Vilnius;Europa;Litas;LTL
+LU;Luxemburg;Luxembourg;Europa;Euro;EUR
+MO;Macau;Concelho de Macau;Asien;Pataca;MOP
+MG;Madagaskar;Antananarivo;Afrika;Ariary;MGA
+MW;Malawi;Lilongwe;Afrika;Kwacha;MWK
+MY;Malaysia;Kuala Lumpur;Asien;Ringgit;MYR
+MV;Malediven;Male;Asien;Rufiyaa;MVR
+ML;Mali;Bamako;Afrika;Franc;XOF
+MT;Malta;Valletta;Europa;Euro;EUR
+MA;Marokko;Rabat;Afrika;Dirham;MAD
+MH;Marshallinseln;Majuro;Ozeanien;Dollar;USD
+MQ;Martinique;Fort-de-France;Nordamerika;Euro;EUR
+MR;Mauretanien;Nouakchott;Afrika;Ouguiya;MRO
+MU;Mauritius;Port Louis;Afrika;Rupie;MUR
+YT;Mayotte;Mamoudzou;Afrika;Euro;EUR
+MK;Mazedonien;Skopje;Europa;Denar;MKD
+MX;Mexiko;Mexiko City;Zentralamerika;Peso;MXN
+FM;Mikronesien;;Ozeanien;Dollar;USD
+MD;Moldau;Chisinau;Europa;Leu;MDL
+MC;Monaco;Monaco;Europa;Euro;EUR
+MN;Mongolei;Ulaanbaatar;Asien;Tögrög;MNT
+ME;Montenegro;Podgorica;Europa;Euro;EUR
+MS;Montserrat;Brades;Nordamerika;Dollar;XCD
+MZ;Mosambik;Maputo;Afrika;Metical;MZN
+MM;Myanmar;Nay Pyi Taw;Asien;Kyat;MMK
+NA;Namibia;Windhoek;Afrika;Dollar;NAD
+NR;Nauru;Yaren;Ozeanien;Dollar;AUD
+NP;Nepal;Kathmandu;Asien;Rupie;NPR
+NC;Neukaledonien;Nouméa;Ozeanien;Franc;XPF
+NZ;Neuseeland;Wellington;Australien;Dollar;NZD
+NI;Nicaragua;Managua;Zentralamerika;Córdoba Oro;NIO
+NL;Niederlande;Amsterdam;Europa;Euro;EUR
+AN;Niederländische Antillen;Willemstad;Nordamerika;Gulden;ANG
+NE;Niger;Niamey;Afrika;Franc;XOF
+NG;Nigeria;Abuja;Afrika;Naira;NGN
+NU;Niue;Alofi;Ozeanien;Dollar;NZD
+KP;Nordkorea;Pjöngjang;Asien;Won;KPW
+NF;Norfolkinsel;Kingston;Australien;Dollar;AUD
+NO;Norwegen;Oslo;Europa;Krone;NOK
+MP;Nördliche Marianen;Saipan;Ozeanien;Dollar;USD
+OM;Oman;Maskat;Asien;Rial;OMR
+PK;Pakistan;Islamabad;Asien;Rupie;PKR
+PW;Palau;;Ozeanien;Dollar;USD
+PS;Palästina;Ramallah;Asien;Schekel;ILS
+PA;Panama;Panamá;Zentralamerika;Balboa;PAB
+PG;Papua-Neuguinea;Port Moresby;Ozeanien;Kina;PGK
+PY;Paraguay;Asunción;Südamerika;Guaraní;PYG
+PE;Peru;Lima;Südamerika;Nuevo Sol;PEN
+PH;Philippinen;Manila;Asien;Peso;PHP
+PN;Pitcairninseln;Adamstown;Ozeanien;Pfund;GBP
+PL;Polen;Warschau;Europa;Zloty;PLN
+PT;Portugal;Lissabon;Europa;Euro;EUR
+PR;Puerto Rico;San Juan;Nordamerika;Dollar;USD
+RE;Réunion;Saint-Denis;Afrika;Euro;EUR
+RW;Ruanda;Kigali;Afrika;Franc;RWF
+RO;Rumänien;Bukarest;Europa;Leu;RON
+RU;Russland;Moskau;Europa;Rubel;RUB
+SB;Salomonen;Honiara;Ozeanien;Dollar;SBD
+ZM;Sambia;Lusaka;Afrika;Kwacha;ZMK
+WS;Samoa;Apia;Ozeanien;Tala;WST
+SM;San Marino;San Marino;Europa;Euro;EUR
+BL;Sankt Bartholomäus;Gustavia;Amerika;Euro;EUR
+ST;São Tomé und Príncipe;São Tomé;Afrika;Dobra;STD
+SA;Saudi-Arabien;Riad;Asien;Riyal;SAR
+SE;Schweden;Stockholm;Europa;Krone;SEK
+CH;Schweiz;Bern;Europa;Franken;CHF
+SN;Senegal;Dakar;Afrika;Franc;XOF
+RS;Serbien;Belgrade;Europa;Dinar;RSD
+SC;Seychellen;Victoria;Afrika;Rupie;SCR
+SL;Sierra Leone;Freetown;Afrika;Leone;SLL
+ZW;Simbabwe;Harare;Afrika;Dollar;ZWL
+SG;Singapur;Singapur;Asien;Dollar;SGD
+SX;Sint Maarten;Philipsburg;Amerika;Gulden;ANG
+SK;Slowakei;Bratislava;Europa;Euro;EUR
+SI;Slowenien;Ljubljana;Europa;Euro;EUR
+SO;Somalia;Mogadishu;Afrika;Schilling;SOS
+ES;Spanien;Madrid;Europa;Euro;EUR
+LK;Sri Lanka;Colombo;Asien;Rupie;LKR
+SH;St. Helena;Jamestown;Afrika;Pfund;SHP
+KN;St. Kitts und Nevis;Basseterre;Nordamerika;Dollar;XCD
+LC;St. Lucia;Castries;Nordamerika;Dollar;XCD
+PM;St. Pierre und Miquelon;Saint-Pierre;Nordamerika;Euro;EUR
+VC;St. Vincent und die Grenadinen;Kingstown;Nordamerika;Dollar;XCD
+SD;Sudan;Khartum;Afrika;Pfund;SDG
+SR;Suriname;Paramaribo;Südamerika;Dollar;SRD
+SJ;Svalbard und Jan Mayen;Longyearbyen;Europa;Krone;NOK
+SZ;Swasiland;Mbabane;Afrika;Lilangeni;SZL
+ZA;Südafrika;Pretoria;Afrika;Rand;ZAR
+GS;Südgeorgien und die Südlichen Sandwichinseln;King Edward Point;Antarktika;Pfund;GBP
+KR;Südkorea;Seoul;Asien;Won;KRW
+SS;Südsudan;Juba;Afrika;Pfund;SSP
+SY;Syrien;Damaskus;Asien;Pfund;SYP
+TJ;Tadschikistan;Dushanbe;Asien;Somoni;TJS
+TW;Taiwan;Taipei;Asien;Dollar;TWD
+TZ;Tansania;Dodoma;Afrika;Schilling;TZS
+UM;Territorische Inseln der USA;;Ozeanien;Dollar;USD
+TH;Thailand;Bangkok;Asien;Baht;THB
+TL;Timor-Leste;Dili;Asien;Dollar;USD
+TG;Togo;Lomé;Afrika;Franc;XOF
+TK;Tokelau;Nukunonu;Ozeanien;Dollar;NZD
+TO;Tonga;Nuku‘alofa;Ozeanien;Pa'anga;TOP
+TT;Trinidad und Tobago;Port-of-Spain;Nordamerika;Dollar;TTD
+TD;Tschad;N'Djamena;Afrika;Franc;XAF
+CZ;Tschechische Republik;Prag;Europa;Krone;CZK
+TN;Tunesien;Tunis;Afrika;Dinar;TND
+TM;Turkmenistan;Ashgabat;Asien;Manat;TMT
+TC;Turks und Caicosinseln;Cockburn Town;Nordamerika;Dollar;USD
+TV;Tuvalu;Funafuti;Ozeanien;Dollar;AUD
+TR;Türkei;Ankara;Asien;Lira;TRY
+UG;Uganda;Kampala;Afrika;Schilling;UGX
+UA;Ukraine;Kiew;Europa;Hrywnja;UAH
+HU;Ungarn;Budapest;Europa;Forint;HUF
+UY;Uruguay;Montevideo;Südamerika;Peso;UYU
+UZ;Usbekistan;Taschkent;Asien;So'm;UZS
+VU;Vanuatu;Port-Vila;Ozeanien;Vatu;VUV
+VA;Vatikanstadt;;Europa;Euro;EUR
+VE;Venezuela;Caracas;Südamerika;Bolívar Fuerte;VEF
+AE;Vereinigte Arabische Emirate;Abu Dhabi;Asien;Dirham;AED
+US;Vereinigte Staaten von Amerika;Washington, D.C.;Nordamerika;Dollar;USD
+GB;Vereinigtes Königreich;London;Europa;Pfund;GBP
+VN;Vietnam;Hanoi;Asien;Dong;VND
+WF;Wallis und Futuna;Mata-Utu;Ozeanien;Franc;XPF
+CX;Weihnachtsinsel;Flying Fish Cove;Australien;Dollar;AUD
+EH;Westsahara;El Aaiún;Afrika;Dirham;MAD
+CF;Zentralafrikanische Republik;Bangui;Afrika;Franc;XAF
+CY;Zypern;Nikosia;Asien;Euro;EUR
+EG;Ägypten;Kairo;Afrika;Pfund;EGP
+GQ;Äquatorialguinea;Malabo;Afrika;Franc;XAF
+ET;Äthiopien;Addis Abeba;Afrika;Birr;ETB
+AT;Österreich;Wien;Europa;Euro;EUR
