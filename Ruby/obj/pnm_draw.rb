@@ -32,30 +32,30 @@ class PNMDraw
   end
   
   def fill_area(canvas, pt1, pt2, pt3, pt4, opt={})
-  	color = opt[:color] || opt[:c]
-  	color = canvas.type == :ppm ? [canvas.maxgray, canvas.maxgray, canvas.maxgray] : canvas.type == :pgm ? canvas.maxgray : 1 unless opt.has_key?(:color) || opt.has_key?(:c)
+    color = opt[:color] || opt[:c]
+    color = canvas.type == :ppm ? [canvas.maxgray, canvas.maxgray, canvas.maxgray] : canvas.type == :pgm ? canvas.maxgray : 1 unless opt.has_key?(:color) || opt.has_key?(:c)
     
     ab = line(pt1, pt2)
-		ad = line(pt1, pt4)
-		sum_a = ab.merge(ad)
-		cb = line(pt3, pt2)
-		cd = line(pt3, pt4)
-		sum_c = cb.merge(cd)
-		
-		final = []
-		canvas.height.times do |y|
-			row = []
-		  canvas.width.times do |x|
-		    pixel = canvas.pixels[y][x]
-		  	if (sum_a.has_key?(x) && sum_c.has_key?(x)) && !(y >= sum_a[x] || y <= sum_c[x])
-		    	pixel = color
-		    end
-		    row << pixel
-		  end
-		  final << row
-		end
-		
-		PNM.create(final, {:type => :ppm, :maxgray => 255})
+    ad = line(pt1, pt4)
+    sum_a = ab.merge(ad)
+    cb = line(pt3, pt2)
+    cd = line(pt3, pt4)
+    sum_c = cb.merge(cd)
+    
+    final = []
+    canvas.height.times do |y|
+    	row = []
+      canvas.width.times do |x|
+        pixel = canvas.pixels[y][x]
+      	if (sum_a.has_key?(x) && sum_c.has_key?(x)) && !(y >= sum_a[x] || y <= sum_c[x])
+        	pixel = color
+        end
+        row << pixel
+      end
+      final << row
+    end
+    
+    PNM.create(final, {:type => :ppm, :maxgray => 255})
   end
 
   private
