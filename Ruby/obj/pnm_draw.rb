@@ -31,7 +31,7 @@ class PNMDraw
     return PNM.create(edited, {:type => canvas.type, :maxgray => canvas.maxgray})
   end
   
-  def fill_area(canvas, pt1, pt2, pt3, pt4, opt={})
+  def fill_area4(canvas, pt1, pt2, pt3, pt4, opt={})
     color = opt[:color] || opt[:c]
     color = canvas.type == :ppm ? [canvas.maxgray, canvas.maxgray, canvas.maxgray] : canvas.type == :pgm ? canvas.maxgray : 1 unless opt.has_key?(:color) || opt.has_key?(:c)
     

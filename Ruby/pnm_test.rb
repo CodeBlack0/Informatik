@@ -39,7 +39,7 @@ d = [180, 140]
 image = PNM.read("resources/images/originals/kitten.ppm")
 #bwmap = PNM.read("resources/images/generated/circle_C.pbm")
 #draw.pbm_onto_image(image, bwmap, {:color => [255, 0, 255]}).write("resources/images/edited/kitten_circle.ppm")
-draw.fill_area(image, a, b, c, d, {:c => [0,255,255]}).write("resources/images/edited/kitten_test_fill_area_2.ppm")
+draw.fill_area4(image, a, b, c, d, {:c => [0,255,255]}).write("resources/images/edited/kitten_test_fill_area_2.ppm")
 
 #converter.blur(image, 3).write("resources/images/edited/rectangle_A_b3.pgm")
 #converter.add(image, image2).write("resources/images/generated/circle_A_+_halfcircle.pbm")
