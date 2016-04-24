@@ -6,7 +6,8 @@ class PNMDraw
   def initialize()
     @generator = PNMGenerator.new
   end
-
+  
+  #draw a line onto an image -------------------------------------------------------------------------------
   def line(canvas, pt1, pt2, opt={})
     color = opt[:color] || opt[:c]
     color = canvas.type == :ppm ? [canvas.maxgray, canvas.maxgray, canvas.maxgray] : canvas.type == :pgm ? canvas.maxgray : 1 unless opt.has_key?(:color) || opt.has_key?(:c)
@@ -31,6 +32,7 @@ class PNMDraw
     return PNM.create(edited, {:type => canvas.type, :maxgray => canvas.maxgray})
   end
   
+  #fill an area with a solid color on a color image --------------------------------------------------------
   def fill_area4(canvas, pt1, pt2, pt3, pt4, opt={})
     color = opt[:color] || opt[:c]
     color = canvas.type == :ppm ? [canvas.maxgray, canvas.maxgray, canvas.maxgray] : canvas.type == :pgm ? canvas.maxgray : 1 unless opt.has_key?(:color) || opt.has_key?(:c)
